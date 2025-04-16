@@ -1,0 +1,101 @@
+/* App wrapper for background and centering */
+.app-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #c3dafe, #e0f2fe);
+}
+
+/* Main box */
+.todo-container {
+  background-color: #ffffff;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 550px;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  animation: slideIn 0.6s ease;
+}
+
+.todo-title {
+  text-align: center;
+  color: #0f172a;
+  font-size: 2.4rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* Label styling */
+.todo-label {
+  font-size: 1.2rem;
+  color: #1e293b;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+/* Input and Add button styling together */
+.input-and-button {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Input field styling */
+.todo-input {
+  flex-grow: 1;
+  padding: 14px 16px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 30px;
+  background-color: #f1f5f9;
+  transition: background-color 0.3s;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  outline: none;
+}
+
+/* Add button */
+.todo-button {
+  background: linear-gradient(135deg, #3b82f6, #6366f1);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 30px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 14px rgba(99, 102, 241, 0.4);
+}
+
+.todo-button:hover {
+  background: linear-gradient(135deg, #2563eb, #4f46e5);
+  box-shadow: 0 6px 18px rgba(99, 102, 241, 0.5);
+  transform: translateY(-2px);
+}
+
+.todo-button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 10px rgba(99, 102, 241, 0.3);
+}
+
+.loading-text {
+  text-align: center;
+  color: #475569;
+  font-size: 1rem;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
