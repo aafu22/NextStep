@@ -5,13 +5,16 @@ import TaskList from './components/TaskList';
 import './App.css';
 import './components/TaskList.css';
 
+const API_BASE = 'https://nextstep-0eui.onrender.com/api/tasks';
+// 🔁 update this
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    axios.get('http://localhost:5000/api/tasks')
+    axios.get(API_BASE)
       .then(res => {
         setTasks(res.data);
         setLoading(false);
@@ -24,7 +27,7 @@ function App() {
 
   const addTask = () => {
     if (!input.trim()) return;
-    axios.post('http://localhost:5000/api/tasks', { title: input })
+    axios.post(API_BASE, { title: input })
       .then(res => {
         setTasks([...tasks, res.data]);
         setInput('');
@@ -33,7 +36,7 @@ function App() {
   };
 
   const toggleComplete = (id, completed) => {
-    axios.put(`http://localhost:5000/api/tasks/${id}`, { completed: !completed })
+    axios.put(`${API_BASE}/${id}`, { completed: !completed })
       .then(res => {
         setTasks(tasks.map(t => t._id === id ? res.data : t));
       })
@@ -41,7 +44,7 @@ function App() {
   };
 
   const deleteTask = (id) => {
-    axios.delete(`http://localhost:5000/api/tasks/${id}`)
+    axios.delete(`${API_BASE}/${id}`)
       .then(() => {
         setTasks(tasks.filter(t => t._id !== id));
       })
@@ -74,7 +77,11 @@ function App() {
         {loading ? (
           <p className="loading-text">Loading tasks...</p>
         ) : (
-          <TaskList tasks={tasks} toggleComplete={toggleComplete} deleteTask={deleteTask} />
+          <TaskList
+            tasks={tasks}
+            toggleComplete={toggleComplete}
+            deleteTask={deleteTask}
+          />
         )}
       </div>
     </div>
